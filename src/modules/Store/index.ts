@@ -7,8 +7,8 @@ import { hoveredNodeRingOpacity, focusedNodeRingOpacity } from '@/graph/variable
 export const ALPHA_MIN = 0.001
 export const MAX_POINT_SIZE = 64
 
-type Hovered<Node> = { node: Node; index: number; position: [ number, number ] }
-type Focused<Node> = { node: Node; index: number }
+export type Hovered<Node> = { node: Node; index: number; position: [ number, number ] }
+export type Focused<Node> = { node: Node; index: number }
 
 export class Store <N> {
   public pointsTextureSize = 0

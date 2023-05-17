@@ -1,4 +1,8 @@
 import { D3ZoomEvent } from 'd3-zoom'
+
+import { Graph } from '@/graph'
+import { isPlainObject } from '@/graph/helper'
+import { Hovered } from '@/graph/modules/Store'
 import { CosmosInputNode, CosmosInputLink } from '@/graph/types'
 import {
   defaultNodeColor,
@@ -10,14 +14,13 @@ import {
   defaultBackgroundColor,
   defaultConfigValues,
 } from '@/graph/variables'
-import { isPlainObject } from '@/graph/helper'
 
 export type NumericAccessor<Datum> = ((d: Datum, i?: number, ...rest: unknown[]) => number | null) | number | null | undefined
 export type StringAccessor<Datum> = ((d: Datum, i?: number, ...rest: unknown[]) => string | null) | string | null | undefined
 export type ColorAccessor<Datum> = ((d: Datum, i?: number, ...rest: unknown[]) => string | [number, number, number, number] | null)
   | string | [number, number, number, number] | null | undefined
 
-export interface GraphEvents <N extends CosmosInputNode> {
+export interface GraphEvents <N extends CosmosInputNode, L extends CosmosInputLink> {
   /**
    * Callback function that will be called on every canvas click.
    * If clicked on a node, its data will be passed as the first argument,
@@ -26,9 +29,7 @@ export interface GraphEvents <N extends CosmosInputNode> {
    * `(node: Node | undefined, index: number | undefined, nodePosition: [number, number] | undefined, event: MouseEvent) => void`.
    * Default value: `undefined`
    */
-  onClick?: (
-      clickedNode: N | undefined, index: number | undefined, nodePosition: [number, number] | undefined, event: MouseEvent
-    ) => void;
+  onClick?: (args: {event: MouseEvent; graph: Graph<N, L>; node: Hovered<N> | undefined}) => void;
   /**
    * Callback function that will be called when mouse movement happens.
    * If the mouse moves over a node, its data will be passed as the first argument,
@@ -284,7 +285,7 @@ export interface GraphConfigInterface<N extends CosmosInputNode, L extends Cosmo
   /**
    * Events
    */
-  events?: GraphEvents<N>;
+  events?: GraphEvents<N, L>;
 
   /**
    * Show WebGL performance monitor.
@@ -351,7 +352,7 @@ export class GraphConfig<N extends CosmosInputNode, L extends CosmosInputLink> i
     onRestart: undefined,
   }
 
-  public events: GraphEvents<N> = {
+  public events: GraphEvents<N, L> = {
     onClick: undefined,
     onMouseMove: undefined,
     onNodeMouseOver: undefined,
