@@ -1,0 +1,37 @@
+export declare const defaultNodeColor = "#b3b3b3";
+export declare const defaultGreyoutNodeOpacity = 0.1;
+export declare const defaultNodeSize = 4;
+export declare const defaultLinkColor = "#666666";
+export declare const defaultGreyoutLinkOpacity = 0.1;
+export declare const defaultLinkWidth = 1;
+export declare const defaultBackgroundColor = "#222222";
+export declare const defaultConfigValues: {
+    spaceSize: number;
+    nodeSizeScale: number;
+    linkWidthScale: number;
+    arrowSizeScale: number;
+    renderLinks: boolean;
+    arrowLinks: boolean;
+    linkVisibilityDistanceRange: number[];
+    linkVisibilityMinTransparency: number;
+    useQuadtree: boolean;
+    simulation: {
+        decay: number;
+        gravity: number;
+        center: number;
+        repulsion: number;
+        repulsionTheta: number;
+        repulsionQuadtreeLevels: number;
+        linkSpring: number;
+        linkDistance: number;
+        linkDistRandomVariationRange: number[];
+        repulsionFromMouse: number;
+        friction: number;
+    };
+    showFPSMonitor: boolean;
+    pixelRatio: number;
+    scaleNodesOnZoom: boolean;
+};
+export declare const hoveredNodeRingOpacity = 0.7;
+export declare const focusedNodeRingOpacity = 0.95;
+export declare const defaultScaleToZoom = 3;

@@ -1,0 +1,14 @@
+import regl from 'regl';
+import { ColorAccessor, NumericAccessor, StringAccessor } from './config';
+export declare const isFunction: <T>(a: T) => boolean;
+export declare const isArray: <T>(a: unknown) => a is T[];
+export declare const isObject: <T>(a: T) => boolean;
+export declare const isAClassInstance: <T>(a: T) => boolean;
+export declare const isPlainObject: <T>(a: T) => boolean;
+export declare function getValue<T, ReturnType>(d: T, accessor: NumericAccessor<T> | StringAccessor<T> | ColorAccessor<T>, index?: number): ReturnType | null | undefined;
+export declare function getString<T>(d: T, accessor: StringAccessor<T>, i?: number): string | null | undefined;
+export declare function getNumber<T>(d: T, accessor: NumericAccessor<T>, i?: number): number | null | undefined;
+export declare function getRgbaColor(value: string | [number, number, number, number]): [number, number, number, number];
+export declare function readPixels(reglInstance: regl.Regl, fbo: regl.Framebuffer2D): Float32Array;
+export declare function group<ArrayItem, Key>(array: ArrayItem[], accessor: (d: ArrayItem) => Key): Map<Key, ArrayItem[]>;
+export declare function clamp(num: number, min: number, max: number): number;
