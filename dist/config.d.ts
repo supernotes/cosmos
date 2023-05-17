@@ -16,8 +16,9 @@ export interface GraphEvents<N extends CosmosInputNode, L extends CosmosInputLin
      */
     onClick?: (args: {
         event: MouseEvent;
-        graph: Graph<N, L>;
         node: Hovered<N> | undefined;
+        index: number | undefined;
+        graph: Graph<N, L>;
     }) => void;
     /**
      * Callback function that will be called when mouse movement happens.

@@ -2760,9 +2760,15 @@ class Graph {
         (_b = (_a = this.config.simulation).onEnd) === null || _b === void 0 ? void 0 : _b.call(_a);
     }
     onClick(event) {
-        var _a, _b, _c, _d;
-        this.store.setFocusedNode((_a = this.store.hoveredNode) === null || _a === void 0 ? void 0 : _a.node, (_b = this.store.hoveredNode) === null || _b === void 0 ? void 0 : _b.index);
-        (_d = (_c = this.config.events).onClick) === null || _d === void 0 ? void 0 : _d.call(_c, { event, node: this.store.hoveredNode, graph: this });
+        var _a, _b;
+        const { hoveredNode } = this.store;
+        this.store.setFocusedNode(hoveredNode === null || hoveredNode === void 0 ? void 0 : hoveredNode.node, hoveredNode === null || hoveredNode === void 0 ? void 0 : hoveredNode.index);
+        (_b = (_a = this.config.events).onClick) === null || _b === void 0 ? void 0 : _b.call(_a, {
+            event,
+            node: hoveredNode,
+            index: hoveredNode ? this.graph.getInputIndexBySortedIndex(hoveredNode === null || hoveredNode === void 0 ? void 0 : hoveredNode.index) : undefined,
+            graph: this,
+        });
     }
     updateMousePosition(event) {
         if (!event || event.offsetX === undefined || event.offsetY === undefined)

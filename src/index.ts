@@ -656,8 +656,14 @@ export class Graph<N extends CosmosInputNode, L extends CosmosInputLink> {
   }
 
   private onClick (event: MouseEvent): void {
-    this.store.setFocusedNode(this.store.hoveredNode?.node, this.store.hoveredNode?.index)
-    this.config.events.onClick?.({ event, node: this.store.hoveredNode, graph: this })
+    const { hoveredNode } = this.store
+    this.store.setFocusedNode(hoveredNode?.node, hoveredNode?.index)
+    this.config.events.onClick?.({
+      event,
+      node: hoveredNode,
+      index: hoveredNode ? this.graph.getInputIndexBySortedIndex(hoveredNode?.index) : undefined,
+      graph: this,
+    })
   }
 
   private updateMousePosition (event: MouseEvent): void {
