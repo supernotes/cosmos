@@ -2170,9 +2170,9 @@ class Graph {
     constructor(canvas, config) {
         var _a;
         this.config = new GraphConfig();
+        this.graph = new GraphData();
         this.requestAnimationFrameId = 0;
         this.isRightClickMouse = false;
-        this.graph = new GraphData();
         this.store = new Store();
         this.zoomInstance = new Zoom(this.store, this.config);
         this.hasBeenRecentlyDestroyed = false;

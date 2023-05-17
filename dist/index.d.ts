@@ -1,14 +1,15 @@
 import 'd3-transition';
 import { GraphConfig, GraphConfigInterface } from "./config";
+import { GraphData } from "./modules/GraphData";
 import { CosmosInputNode, CosmosInputLink } from "./types";
 export declare class Graph<N extends CosmosInputNode, L extends CosmosInputLink> {
     config: GraphConfig<N, L>;
+    graph: GraphData<N, L>;
     private canvas;
     private canvasD3Selection;
     private reglInstance;
     private requestAnimationFrameId;
     private isRightClickMouse;
-    private graph;
     private store;
     private points;
     private lines;
